@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D other)
+    public GameObject deathScreen;
+
+    void OnCollisionEnter2D(Collision2D other)
     {
-        Destroy(other.gameObject); 
+        if(other.transform.tag == "Player"){
+            Debug.Log("Death script destroying " + other.gameObject.name);
+            Destroy(other.gameObject);
+
+            deathScreen.SetActive(true);
+        }
     }
 }
